@@ -4,9 +4,6 @@
 ## Getting Started
 Follow the steps below to run the project on your local machine.
 
-### Prerequisites
-- Node.js
-- npm (Node Package Manager)
 
 ### Installation
 1. Clone the project to your local machine.
