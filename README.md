@@ -1,24 +1,26 @@
 # campfire-frontend
 
-## Project setup
-```
-npm install
-```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Getting Started
+Follow the steps below to run the project on your local machine.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### Prerequisites
+- Node.js
+- npm (Node Package Manager)
 
-### Lints and fixes files
-```
-npm run lint
-```
+### Installation
+1. Clone the project to your local machine.
+   ```bash
+   git clone https://github.com/Berkayozgun/campfire-frontend.git
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+2. Navigate to the project folder.
+   ```bash
+   cd campfire-frontend
+
+3. Install the required dependencies.
+   ```bash
+   npm install
+
+4. Start the frontend side of the project.
+   ```bash
+   npm run serve
