@@ -108,7 +108,7 @@ input {
   margin-bottom: 20px;
   border:none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  border-radius: 4px;
+  border-radius: 10px;
 }
 select {
   width: 100%;

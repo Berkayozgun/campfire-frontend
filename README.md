@@ -2,6 +2,10 @@
 
 ## Screenshots
 
+### Register Page
+
+![Register Page](./screenshots/register.png)
+
 ### Login Page
 
 ![Login Page](./screenshots/login.png)
