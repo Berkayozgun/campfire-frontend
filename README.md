@@ -43,7 +43,7 @@ This project has been significantly refactored and modernized to reflect a profe
 -   **Vue Router:** Declarative routing for Vue.js.
 -   **Axios:** Promise-based HTTP client for the browser and Node.js.
 -   **CSS Variables:** For efficient and dynamic theme management (Dark/Light Mode).
--   **Mock API:** For simulating backend interactions during development.
+-   **Mock API:** For simulating backend interactions during development. The full backend API for this project can be found at: [campfire_microblog-backend](https://github.com/Berkayozgun/campfire_microblog-backend)
 
 ## Getting Started
 
