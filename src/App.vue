@@ -3,19 +3,20 @@
     <CustomHeader />
     <div class="custom-app">
       <router-view class="router-view" />
-
-
     </div>
+    <CustomFooter />
   </main>
 </template>
 
 <script>
 import CustomHeader from './components/CustomHeader.vue';
+import CustomFooter from './components/CustomFooter.vue';
 
 export default {
   name: 'App',
   components: {
     CustomHeader,
+    CustomFooter,
   },
 };
 </script>
@@ -28,6 +29,7 @@ export default {
   flex-direction: column;
   background-color: #f5f5f5;
   scroll-behavior: smooth;
+  min-height: 100vh; /* Ensure app takes full viewport height */
 }
 
 .custom-app {
@@ -36,7 +38,8 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  /* height: 100%; */ /* Removed as flex-grow will handle it */
+  flex-grow: 1; /* Allow custom-app to take available space */
 }
 
 .router-body {
@@ -78,4 +81,3 @@ export default {
   width: 100%;
 }
 </style>
-
