@@ -154,21 +154,19 @@ export default {
 <style scoped>
 .post-card {
   width: 100%; /* Allow card to fill grid cell */
-  /* max-width removed */
-  /* margin removed */
   border-radius: 18px;
   overflow: hidden;
   padding: 28px 28px 18px 28px;
   display: flex;
   flex-direction: column;
-  background: #fff;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08); /* Slightly enhanced shadow */
-  border: 1px solid #e6ecf0;
-  transition: box-shadow 0.2s, border 0.2s;
+  background: var(--card-bg-color); /* Use CSS variable */
+  box-shadow: 0 6px 20px var(--shadow-color); /* Slightly enhanced shadow */
+  border: 1px solid var(--border-color); /* Use CSS variable */
+  transition: box-shadow 0.2s, border 0.2s, background-color 0.3s;
 }
 .post-card:hover {
-  box-shadow: 0 10px 30px rgba(29,161,242,0.18); /* Stronger hover shadow */
-  border: 1.5px solid #1da1f2;
+  box-shadow: 0 10px 30px var(--primary-blue-shadow); /* Stronger hover shadow */
+  border: 1.5px solid var(--primary-blue); /* Use CSS variable */
 }
 
 .author-info {
@@ -188,7 +186,7 @@ export default {
   height: 44px;
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  box-shadow: 0 2px 8px var(--shadow-color);
 }
 .author-image img {
   width: 100%;
@@ -199,26 +197,26 @@ export default {
 .post-author {
   font-size: 1.05rem;
   font-weight: 700;
-  color: #1da1f2;
+  color: var(--primary-blue); /* Use CSS variable */
   letter-spacing: -0.5px;
 }
 .post-date {
   font-size: 0.95rem;
-  color: #657786;
-  background: #f7fafc;
+  color: var(--secondary-text-color); /* Use CSS variable */
+  background: var(--input-bg-color); /* Use CSS variable */
   padding: 4px 12px;
   border-radius: 12px;
 }
 .post-title {
   font-size: 1.25rem;
   font-weight: 800;
-  color: #222;
+  color: var(--text-color); /* Use CSS variable */
   margin: 8px 0 2px 0;
   letter-spacing: -0.5px;
 }
 .post-content {
   font-size: 1.08rem;
-  color: #333;
+  color: var(--text-color); /* Use CSS variable */
   margin-bottom: 10px;
   margin-top: 2px;
   line-height: 1.6;
@@ -240,8 +238,8 @@ export default {
   height: 36px;
   border-radius: 50%;
   border: none;
-  background: #f7fafc;
-  color: #1da1f2;
+  background: var(--input-bg-color); /* Use CSS variable */
+  color: var(--primary-blue); /* Use CSS variable */
   font-size: 1.2rem;
   font-weight: bold;
   display: flex;
@@ -252,8 +250,8 @@ export default {
   margin: 0 2px;
 }
 .vote-button.up:hover {
-  background: #e8f5fe;
-  color: #1991da;
+  background: var(--border-color); /* Use CSS variable */
+  color: var(--primary-blue-dark); /* Use CSS variable */
 }
 .vote-button.down {
   color: #e0245e;
@@ -265,7 +263,7 @@ export default {
 .vote-count {
   font-size: 1.05rem;
   font-weight: 600;
-  color: #222;
+  color: var(--text-color); /* Use CSS variable */
   margin: 0 4px;
 }
 .post-comments {
@@ -278,8 +276,8 @@ export default {
   height: 36px;
   border-radius: 50%;
   border: none;
-  background: #f7fafc;
-  color: #1da1f2;
+  background: var(--input-bg-color); /* Use CSS variable */
+  color: var(--primary-blue); /* Use CSS variable */
   font-size: 1.1rem;
   display: flex;
   align-items: center;
@@ -288,34 +286,34 @@ export default {
   transition: background 0.18s, color 0.18s;
 }
 .show-comments-button:hover {
-  background: #e8f5fe;
-  color: #1991da;
+  background: var(--border-color); /* Use CSS variable */
+  color: var(--primary-blue-dark); /* Use CSS variable */
 }
 .comment-count {
   font-size: 1rem;
-  color: #657786;
+  color: var(--secondary-text-color); /* Use CSS variable */
   margin-left: 2px;
 }
 .comments-section {
   margin-top: 18px;
-  background: #f7fafc;
+  background: var(--input-bg-color); /* Use CSS variable */
   border-radius: 12px;
   padding: 16px 14px 10px 14px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 8px var(--shadow-color); /* Use CSS variable */
   animation: fadeIn 0.3s;
 }
 .comments-section h3 {
   font-size: 1.1rem;
   font-weight: 700;
   margin-bottom: 8px;
-  color: #1da1f2;
+  color: var(--primary-blue); /* Use CSS variable */
 }
 .comments-section ul {
   margin-bottom: 8px;
 }
 .comments-section li {
   font-size: 0.98rem;
-  color: #333;
+  color: var(--text-color); /* Use CSS variable */
   margin-bottom: 4px;
 }
 .add-comment-area {
@@ -327,19 +325,19 @@ export default {
   flex: 1;
   min-height: 32px;
   border-radius: 8px;
-  border: 1px solid #e6ecf0;
+  border: 1px solid var(--border-color); /* Use CSS variable */
   padding: 6px 10px;
   font-size: 1rem;
   resize: vertical;
-  background: #fff;
+  background: var(--card-bg-color); /* Use CSS variable */
   transition: border 0.18s;
 }
 .add-comment-area textarea:focus {
-  border: 1.5px solid #1da1f2;
+  border: 1.5px solid var(--primary-blue); /* Use CSS variable */
   outline: none;
 }
 .add-comment-btn {
-  background: linear-gradient(90deg, #1da1f2 60%, #1991da 100%);
+  background: linear-gradient(90deg, var(--primary-blue) 60%, var(--primary-blue-dark) 100%); /* Use CSS variable */
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -351,7 +349,7 @@ export default {
   box-shadow: 0 2px 8px rgba(29,161,242,0.10);
 }
 .add-comment-btn:hover {
-  background: linear-gradient(90deg, #1991da 60%, #1da1f2 100%);
+  background: linear-gradient(90deg, var(--primary-blue-dark) 60%, var(--primary-blue) 100%); /* Use CSS variable */
   box-shadow: 0 4px 16px rgba(29,161,242,0.18);
 }
 @media (max-width: 700px) {

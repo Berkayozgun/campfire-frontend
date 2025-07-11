@@ -56,8 +56,8 @@ export default {
 
 .home-view {
   font-family: "Inter", sans-serif; /* Updated font to Inter */
-  color: #14171a;
-  background: linear-gradient(120deg, #f0f2f5 60%, #e6efff 100%); /* Lighter, more modern gradient */
+  color: var(--text-color); /* Use CSS variable */
+  background: var(--bg-color); /* Use CSS variable */
   min-height: 100vh;
   width: 100%;
   padding-bottom: 32px;
@@ -80,17 +80,17 @@ export default {
 .main-title {
   font-size: 2.8rem; /* Larger title */
   font-weight: 900;
-  color: #1da1f2;
+  color: var(--primary-blue); /* Use CSS variable */
   margin-bottom: 4px;
   letter-spacing: -1.5px;
 }
 .subtitle {
   font-size: 1.2rem; /* Slightly larger subtitle */
-  color: #657786;
+  color: var(--secondary-text-color); /* Use CSS variable */
   margin-bottom: 0;
 }
 .new-post-btn {
-  background: linear-gradient(90deg, #1da1f2 60%, #1991da 100%);
+  background: linear-gradient(90deg, var(--primary-blue) 60%, var(--primary-blue-dark) 100%); /* Use CSS variable */
   color: #fff;
   border: none;
   border-radius: 100px;
@@ -98,12 +98,12 @@ export default {
   font-size: 1.15rem; /* Slightly larger font */
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(29,161,242,0.20); /* Stronger shadow */
+  box-shadow: 0 4px 12px var(--shadow-color); /* Stronger shadow */
   transition: background 0.2s, box-shadow 0.2s;
 }
 .new-post-btn:hover {
-  background: linear-gradient(90deg, #1991da 60%, #1da1f2 100%);
-  box-shadow: 0 6px 20px rgba(29,161,242,0.28);
+  background: linear-gradient(90deg, var(--primary-blue-dark) 60%, var(--primary-blue) 100%); /* Use CSS variable */
+  box-shadow: 0 6px 20px var(--shadow-color);
 }
 
 .post-list {
@@ -145,4 +145,3 @@ export default {
   }
 }
 </style>
-

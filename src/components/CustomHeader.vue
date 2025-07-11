@@ -33,6 +33,9 @@
       </div>
 
       <div class="app-header__right">
+        <button class="app-header__theme-toggle" @click="toggleTheme">
+          {{ isDarkMode ? '☀️' : '🌙' }}
+        </button>
         <div class="app-header__user-actions" v-if="isLoggedIn">
           <div class="app-header__user-info">
             <div class="app-header__avatar">
@@ -55,9 +58,12 @@
 
 <script>
 import { mockLogout } from "@/mocks/mockApi";
+import { mapState, mapActions } from 'vuex';
+
 export default {
   name: "TwitterHeader",
   computed: {
+    ...mapState(['isDarkMode']),
     user() {
       return this.$store.state.user;
     },
@@ -74,6 +80,7 @@ export default {
     },
   },
   methods: {
+    ...mapActions(['toggleDarkMode']),
     async logout() {
       try {
         await mockLogout();
@@ -83,6 +90,9 @@ export default {
         console.log("Logout error:", error);
         alert("Logout failed (mock)");
       }
+    },
+    toggleTheme() {
+      this.toggleDarkMode();
     },
   },
   mounted() {
@@ -104,13 +114,13 @@ export default {
   z-index: 100;
   width: 100%;
   height: 60px; /* Slightly smaller height */
-  background-color: #000000; /* X-like dark background */
-  color: #ffffff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Darker shadow */
+  background-color: var(--card-bg-color); /* Use CSS variable */
+  color: var(--text-color); /* Use CSS variable */
+  box-shadow: 0 2px 10px var(--shadow-color); /* Darker shadow */
   display: flex;
   align-items: center;
   font-family: 'Inter', sans-serif;
-  transition: box-shadow 0.2s;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.2s;
 }
 
 .app-header__container {
@@ -145,14 +155,14 @@ export default {
 
 .app-header__logo-icon {
   font-size: 1.8rem; /* X logo size */
-  color: #ffffff;
+  color: var(--text-color); /* Use CSS variable */
 }
 
 .app-header__logo-text {
   font-size: 1.2rem;
   font-weight: 800;
   letter-spacing: -0.5px;
-  color: #ffffff;
+  color: var(--text-color); /* Use CSS variable */
 }
 
 .app-header__nav-links {
@@ -164,7 +174,7 @@ export default {
 }
 
 .app-header__nav-link {
-  color: #ffffff;
+  color: var(--text-color); /* Use CSS variable */
   font-size: 0.95rem;
   font-weight: 600;
   padding: 5px 10px;
@@ -176,11 +186,11 @@ export default {
 }
 
 .app-header__nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--border-color); /* Use CSS variable */
 }
 
 .app-header__nav-link.router-link-exact-active {
-  color: #1da1f2; /* X blue for active link */
+  color: var(--primary-blue); /* X blue for active link */
 }
 
 .app-header__search {
@@ -193,20 +203,20 @@ export default {
   width: 100%;
   padding: 8px 15px 8px 40px; /* Space for icon */
   border-radius: 20px;
-  border: 1px solid #333333;
-  background-color: #202327; /* Darker background for input */
-  color: #ffffff;
+  border: 1px solid var(--border-color); /* Use CSS variable */
+  background-color: var(--input-bg-color); /* Darker background for input */
+  color: var(--text-color); /* Use CSS variable */
   font-size: 0.9rem;
   outline: none;
   transition: border-color 0.2s;
 }
 
 .app-header__search-input::placeholder {
-  color: #8899a6;
+  color: var(--input-placeholder-color); /* Use CSS variable */
 }
 
 .app-header__search-input:focus {
-  border-color: #1da1f2;
+  border-color: var(--primary-blue); /* X blue on focus */
 }
 
 .app-header__search-icon {
@@ -214,7 +224,7 @@ export default {
   left: 15px;
   top: 50%;
   transform: translateY(-50%);
-  color: #8899a6;
+  color: var(--input-placeholder-color); /* Use CSS variable */
   font-size: 1rem;
 }
 
@@ -252,13 +262,13 @@ export default {
 .app-header__username {
   font-size: 0.9rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--text-color); /* Use CSS variable */
   margin-bottom: 0;
 }
 
 .app-header__user-handle {
   font-size: 0.75rem;
-  color: #8899a6;
+  color: var(--secondary-text-color); /* Use CSS variable */
 }
 
 .app-header__logout-button {
@@ -278,7 +288,7 @@ export default {
 }
 
 .app-header__post-button {
-  background-color: #1da1f2; /* X blue */
+  background-color: var(--primary-blue); /* X blue */
   color: #fff;
   border: none;
   border-radius: 20px;
@@ -290,7 +300,26 @@ export default {
 }
 
 .app-header__post-button:hover {
-  background-color: #1991da;
+  background-color: var(--primary-blue-dark);
+}
+
+.app-header__theme-toggle {
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.app-header__theme-toggle:hover {
+  background-color: var(--border-color);
 }
 
 @media (max-width: 1024px) {

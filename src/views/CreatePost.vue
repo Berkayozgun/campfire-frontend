@@ -1,20 +1,31 @@
 <template>
-  <div class="create-post">
-    <h2 class="page-title">Create Post</h2>
-    <form @submit.prevent="createPost">
-      <label for="title" class="input-label">Title:</label>
-      <input
-        type="text"
-        id="title"
-        v-model="title"
-        class="input-field"
-        required
-      />
+  <div class="create-post-container">
+    <h2 class="create-post-title">Create New Post</h2>
+    <form @submit.prevent="createPost" class="create-post-form">
+      <div class="input-group">
+        <label for="title" class="input-label">Title</label>
+        <input
+          type="text"
+          id="title"
+          v-model="title"
+          class="create-post-input"
+          placeholder="Enter post title"
+          required
+        />
+      </div>
 
-      <label for="content" class="input-label">Content:</label>
-      <input id="content" v-model="content" class="input-field" required />
+      <div class="input-group">
+        <label for="content" class="input-label">Content</label>
+        <textarea
+          id="content"
+          v-model="content"
+          class="create-post-input textarea-field"
+          placeholder="Write your post content here..."
+          required
+        ></textarea>
+      </div>
 
-      <button type="submit" class="submit-button">Create Post</button>
+      <button type="submit" class="create-post-button">Publish Post</button>
     </form>
   </div>
 </template>
@@ -61,56 +72,99 @@ export default {
 </script>
 
 <style scoped>
-.create-post {
-  max-width: 400px;
-  margin-top: 100px;
-  padding: 20px;
+.create-post-container {
+  max-width: 600px;
+  margin: 80px auto;
+  padding: 40px;
+  background-color: var(--card-bg-color);
+  border-radius: 16px;
+  box-shadow: 0 8px 25px var(--shadow-color);
   text-align: center;
-  border-radius: 15px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  align-self: center;
-  background-color: #e1e8ed;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-color);
 }
 
-.page-title {
-  font-size: 24px;
+.create-post-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 30px;
+  color: var(--text-color);
+}
+
+.create-post-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group {
+  text-align: left;
 }
 
 .input-label {
-  font-size: 16px;
+  display: block;
+  font-size: 0.9rem;
+  color: var(--secondary-text-color);
   margin-bottom: 8px;
 }
 
-.input-field {
+.create-post-input {
   width: 100%;
-  padding: 10px;
-  margin: 8px 0;
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
+  padding: 12px 15px;
+  border: 1px solid var(--input-border-color);
+  border-radius: 8px;
+  background-color: var(--input-bg-color);
+  color: var(--text-color);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.submit-button {
+.create-post-input::placeholder {
+  color: var(--input-placeholder-color);
+}
+
+.create-post-input:focus {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 2px var(--primary-blue-shadow-light);
+}
+
+.textarea-field {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.create-post-button {
   width: 100%;
-  padding: 12px;
-  background-color: #4caf50;
-  color: white;
+  padding: 14px;
+  background-color: var(--primary-blue);
+  color: #ffffff;
   border: none;
-  border-radius: 10px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: 700;
   cursor: pointer;
-  font-size: 16px;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px var(--primary-blue-shadow);
+  margin-top: 20px;
 }
 
-.submit-button:hover {
-  background-color: #45a049;
+.create-post-button:hover {
+  background-color: var(--primary-blue-dark);
+  box-shadow: 0 6px 20px var(--primary-blue-shadow-dark);
+}
+
+@media (max-width: 600px) {
+  .create-post-container {
+    margin: 40px 20px;
+    padding: 30px;
+  }
+  .create-post-title {
+    font-size: 1.8rem;
+  }
+  .create-post-button {
+    font-size: 1rem;
+    padding: 12px;
+  }
 }
 </style>
-

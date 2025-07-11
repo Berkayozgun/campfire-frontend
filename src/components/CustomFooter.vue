@@ -24,12 +24,13 @@ export default {
 
 <style scoped>
 .app-footer {
-  background-color: #2c3e50; /* Dark background for a modern look */
-  color: #ecf0f1;
+  background-color: var(--card-bg-color); /* Use CSS variable for background */
+  color: var(--text-color); /* Use CSS variable for text color */
   padding: 20px 0;
   font-family: 'Inter', sans-serif;
   text-align: center;
   margin-top: auto; /* Pushes the footer to the bottom */
+  transition: background-color 0.3s, color 0.3s; /* Add transition for smooth theme change */
 }
 
 .app-footer__container {
@@ -53,13 +54,13 @@ export default {
 
 .app-footer__social-icon {
   font-size: 1.5rem;
-  color: #ecf0f1;
+  color: var(--text-color); /* Use CSS variable for icon color */
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .app-footer__social-icon:hover {
-  color: #1da1f2; /* Twitter blue for hover */
+  color: var(--primary-blue); /* Use CSS variable for hover color */
 }
 
 @media (max-width: 768px) {

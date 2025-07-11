@@ -7,10 +7,11 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     user: null,  // Kullanıcı bilgilerini içeren bir obje (username ve token)
+    isDarkMode: localStorage.getItem('theme') === 'dark' // Tema durumunu localStorage'dan al
   },
     mutations: {
-      setUser(state, { username, token }) {
-        state.user = { username, token };  // Kullanıcı bilgilerini içeren bir obje
+      setUser(state, { username, token, profile_image_url }) {
+        state.user = { username, token, profile_image_url };  // Kullanıcı bilgilerini içeren bir obje
       },
       setToken(state, token) {
         state.token = token;
@@ -25,11 +26,15 @@ export default new Vuex.Store({
         localStorage.removeItem('token');  // Token'ı local storage'dan sil
 
       },
+      toggleDarkMode(state) {
+        state.isDarkMode = !state.isDarkMode;
+        localStorage.setItem('theme', state.isDarkMode ? 'dark' : 'light'); // Temayı localStorage'a kaydet
+      }
     },
     actions: {
-      setUser({ commit }, { username, token }) {
-        commit('setUser', { username, token });
-        localStorage.setItem('user', JSON.stringify({ username, token }));
+      setUser({ commit }, { username, token, profile_image_url }) {
+        commit('setUser', { username, token, profile_image_url });
+        localStorage.setItem('user', JSON.stringify({ username, token, profile_image_url }));
         // İkinci parametre olarak bir obje geçir
       },
       setToken({ commit }, token) {
@@ -44,6 +49,8 @@ export default new Vuex.Store({
         localStorage.removeItem('user');
 
       },
+      toggleDarkMode({ commit }) {
+        commit('toggleDarkMode');
+      }
     }
   });
-  

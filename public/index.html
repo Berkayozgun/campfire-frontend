@@ -9,6 +9,41 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <style>
+      :root {
+        --bg-color: #f0f2f5;
+        --text-color: #1a1a1a;
+        --secondary-text-color: #657786;
+        --card-bg-color: #ffffff;
+        --border-color: #e6ecf0;
+        --primary-blue: #1da1f2;
+        --primary-blue-dark: #1991da;
+        --shadow-color: rgba(0, 0, 0, 0.05);
+        --input-bg-color: #ffffff;
+        --input-border-color: #e6ecf0;
+        --input-placeholder-color: #657786;
+      }
+      body.dark-mode {
+        --bg-color: #1a1a1a;
+        --text-color: #e0e0e0;
+        --secondary-text-color: #8899a6;
+        --card-bg-color: #202327;
+        --border-color: #333333;
+        --primary-blue: #1da1f2;
+        --primary-blue-dark: #1991da;
+        --shadow-color: rgba(0, 0, 0, 0.5);
+        --input-bg-color: #202327;
+        --input-border-color: #333333;
+        --input-placeholder-color: #8899a6;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        transition: background-color 0.3s, color 0.3s;
+      }
+    </style>
   </head>
   <body>
     <noscript>
