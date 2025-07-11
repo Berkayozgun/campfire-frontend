@@ -1,37 +1,53 @@
 <template>
   <header class="app-header">
     <div class="app-header__container">
-      <div class="app-header__logo">
-        <span class="app-header__logo-icon">🔥</span>
-        <span class="app-header__logo-text">Campfire</span>
-      </div>
-      <nav class="app-header__nav">
-        <ul class="app-header__nav-links">
-          <li v-if="isLoggedIn">
-            <router-link class="app-header__nav-link" to="/">Home</router-link>
-          </li>
-          <li v-if="isLoggedIn">
-            <router-link class="app-header__nav-link" to="/newpost">New Post</router-link>
-          </li>
-          <li v-if="!isLoggedIn">
-            <router-link class="app-header__nav-link" to="/login">Login</router-link>
-          </li>
-          <li v-if="!isLoggedIn">
-            <router-link class="app-header__nav-link" to="/register">Register</router-link>
-          </li>
-        </ul>
-      </nav>
-      <div class="app-header__user-actions" v-if="isLoggedIn">
-        <div class="app-header__user-info">
-          <div class="app-header__avatar">
-            <img :src="avatar" alt="Avatar" />
-          </div>
-          <div class="app-header__user-data">
-            <p class="app-header__username">{{ username }}</p>
-            <p class="app-header__user-handle">@{{ username }}</p>
-          </div>
+      <div class="app-header__left">
+        <div class="app-header__logo">
+          <span class="app-header__logo-icon">𝕏</span>
+          <span class="app-header__logo-text">Campfire</span>
         </div>
-        <button class="app-header__logout-button" @click="logout">Logout</button>
+
+        <nav class="app-header__nav">
+          <ul class="app-header__nav-links">
+            <li v-if="isLoggedIn">
+              <router-link class="app-header__nav-link" to="/">Home</router-link>
+            </li>
+            <li v-if="isLoggedIn">
+              <router-link class="app-header__nav-link" to="/newpost">New Post</router-link>
+            </li>
+            <li v-if="!isLoggedIn">
+              <router-link class="app-header__nav-link" to="/login">Login</router-link>
+            </li>
+            <li v-if="!isLoggedIn">
+              <router-link class="app-header__nav-link" to="/register">Register</router-link>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="app-header__center">
+        <div class="app-header__search">
+          <input type="text" placeholder="Search Campfire" class="app-header__search-input" />
+          <span class="app-header__search-icon">🔍</span>
+        </div>
+      </div>
+
+      <div class="app-header__right">
+        <div class="app-header__user-actions" v-if="isLoggedIn">
+          <div class="app-header__user-info">
+            <div class="app-header__avatar">
+              <img :src="avatar" alt="Avatar" />
+            </div>
+            <div class="app-header__user-data">
+              <p class="app-header__username">{{ username }}</p>
+              <p class="app-header__user-handle">@{{ username }}</p>
+            </div>
+          </div>
+          <button class="app-header__logout-button" @click="logout">Logout</button>
+        </div>
+        <button v-if="isLoggedIn" class="app-header__post-button" @click="$router.push('/newpost')">
+          Post
+        </button>
       </div>
     </div>
   </header>
@@ -87,10 +103,10 @@ export default {
   top: 0;
   z-index: 100;
   width: 100%;
-  height: 72px;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.05);
+  height: 60px; /* Slightly smaller height */
+  background-color: #000000; /* X-like dark background */
+  color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Darker shadow */
   display: flex;
   align-items: center;
   font-family: 'Inter', sans-serif;
@@ -102,28 +118,41 @@ export default {
   justify-content: space-between;
   align-items: center;
   height: 100%;
-  max-width: 1200px;
+  max-width: 1300px; /* Wider container */
   margin: 0 auto;
   width: 100%;
-  padding: 0 32px;
+  padding: 0 20px;
+}
+
+.app-header__left,
+.app-header__right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.app-header__center {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .app-header__logo {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 5px;
 }
 
 .app-header__logo-icon {
-  font-size: 2rem;
-  margin-right: 4px;
+  font-size: 1.8rem; /* X logo size */
+  color: #ffffff;
 }
 
 .app-header__logo-text {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 800;
-  letter-spacing: -1px;
-  color: #1a202c;
+  letter-spacing: -0.5px;
+  color: #ffffff;
 }
 
 .app-header__nav-links {
@@ -131,15 +160,15 @@ export default {
   list-style-type: none;
   padding: 0;
   margin: 0;
-  gap: 8px;
+  gap: 15px;
 }
 
 .app-header__nav-link {
-  color: #4a5568;
-  font-size: 1rem;
+  color: #ffffff;
+  font-size: 0.95rem;
   font-weight: 600;
-  padding: 8px 18px;
-  border-radius: 100px;
+  padding: 5px 10px;
+  border-radius: 5px;
   text-decoration: none;
   transition: background 0.2s, color 0.2s;
   display: flex;
@@ -147,44 +176,71 @@ export default {
 }
 
 .app-header__nav-link:hover {
-  background: #edf2f7;
-  color: #1a202c;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .app-header__nav-link.router-link-exact-active {
-  background: #1da1f2;
-  color: #fff;
+  color: #1da1f2; /* X blue for active link */
+}
+
+.app-header__search {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+.app-header__search-input {
+  width: 100%;
+  padding: 8px 15px 8px 40px; /* Space for icon */
+  border-radius: 20px;
+  border: 1px solid #333333;
+  background-color: #202327; /* Darker background for input */
+  color: #ffffff;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.app-header__search-input::placeholder {
+  color: #8899a6;
+}
+
+.app-header__search-input:focus {
+  border-color: #1da1f2;
+}
+
+.app-header__search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8899a6;
+  font-size: 1rem;
 }
 
 .app-header__user-actions {
   display: flex;
   align-items: center;
-  background: #f7fafc;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-  border-radius: 32px;
-  padding: 4px 16px 4px 8px;
-  gap: 12px;
+  gap: 10px;
 }
 
 .app-header__user-info {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .app-header__avatar {
-  width: 40px;
-  height: 40px;
+  width: 36px; /* Smaller avatar */
+  height: 36px;
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
 }
 
 .app-header__avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 50%;
 }
 
 .app-header__user-data {
@@ -194,72 +250,99 @@ export default {
 }
 
 .app-header__username {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 700;
-  color: #1a202c;
-  margin-bottom: 2px;
+  color: #ffffff;
+  margin-bottom: 0;
 }
 
 .app-header__user-handle {
-  font-size: 0.85rem;
-  color: #657786;
+  font-size: 0.75rem;
+  color: #8899a6;
 }
 
 .app-header__logout-button {
-  background: linear-gradient(90deg, #1da1f2 60%, #1991da 100%);
+  background-color: #e0245e; /* Red for logout */
   color: #fff;
   border: none;
-  border-radius: 100px;
-  padding: 8px 22px;
-  font-size: 1rem;
+  border-radius: 20px;
+  padding: 6px 15px;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s, box-shadow 0.2s;
-  box-shadow: 0 2px 8px rgba(29,161,242,0.10);
+  transition: background-color 0.2s;
 }
 
 .app-header__logout-button:hover {
-  background: linear-gradient(90deg, #1991da 60%, #1da1f2 100%);
-  box-shadow: 0 4px 16px rgba(29,161,242,0.18);
+  background-color: #c2185b;
 }
 
-@media (max-width: 900px) {
-  .app-header__container {
-    padding: 0 16px;
-  }
+.app-header__post-button {
+  background-color: #1da1f2; /* X blue */
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 18px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.app-header__post-button:hover {
+  background-color: #1991da;
+}
+
+@media (max-width: 1024px) {
   .app-header__logo-text {
     display: none;
   }
-  .app-header__user-actions {
-    padding: 4px 8px 4px 4px;
+  .app-header__nav-links {
+    gap: 10px;
+  }
+  .app-header__nav-link {
+    padding: 5px 8px;
+  }
+  .app-header__search {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-header__nav {
+    display: none; /* Hide main nav on smaller screens */
+  }
+  .app-header__user-data {
+    display: none; /* Hide username/handle */
+  }
+  .app-header__search {
+    max-width: 250px;
+  }
+  .app-header__logout-button {
+    padding: 6px 10px;
+  }
+  .app-header__post-button {
+    padding: 8px 12px;
   }
 }
 
 @media (max-width: 600px) {
   .app-header__container {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0 16px;
+    padding: 0 10px;
   }
-  .app-header__logo-area {
-    margin-bottom: 0;
+  .app-header__search {
+    max-width: 180px; /* Even smaller search on mobile */
+  }
+  .app-header__logo-icon {
+    font-size: 1.5rem;
   }
   .app-header__user-actions {
-    margin-top: 0;
-    width: auto;
+    gap: 5px;
   }
-  .app-header__nav-links {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid #e8e8e8;
-    justify-content: space-around;
-    padding: 8px 0;
-    margin: 0;
-    z-index: 101;
+  .app-header__logout-button,
+  .app-header__post-button {
+    font-size: 0.8rem;
+    padding: 5px 8px;
   }
 }
 </style>
