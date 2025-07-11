@@ -67,7 +67,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1200px; /* Increased max-width for wider layout */
+  max-width: 700px; /* Adjusted max-width for single column layout */
   margin: 0 auto 24px auto; /* Adjusted margin */
   padding: 40px 32px 16px 32px; /* Adjusted padding */
   gap: 24px;
@@ -107,16 +107,15 @@ export default {
 }
 
 .post-list {
-  display: grid; /* Changed to Grid */
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid columns */
-  gap: 24px; /* Gap between grid items */
+  display: flex; /* Changed to Flexbox */
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  gap: 24px; /* Gap between posts */
   width: 100%;
-  max-width: 1200px; /* Increased max-width for wider layout */
+  max-width: 700px; /* Adjusted max-width for single column layout */
   margin: 0 auto;
   padding: 0 32px; /* Added padding */
 }
-
-/* Removed .custom-post-card styles as they are now handled within PostCard.vue */
 
 @media (max-width: 900px) {
   .home-header, .post-list {
@@ -142,7 +141,6 @@ export default {
     font-size: 1.5rem;
   }
   .post-list {
-    grid-template-columns: 1fr; /* Single column on small screens */
     padding: 0 16px;
   }
 }
