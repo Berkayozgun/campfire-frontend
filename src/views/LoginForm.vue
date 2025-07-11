@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { mockLogin } from "@/mocks/mockApi";
 export default {
   data() {
     return {
@@ -22,47 +23,26 @@ export default {
   methods: {
     async login() {
       try {
-        const response = await fetch("http://127.0.0.1:5000/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: this.username,
-            password: this.password,
-          }),
+        const responseData = await mockLogin({
+          username: this.username,
+          password: this.password,
         });
-
-        if (!response.ok) {
-          throw new Error("Login Failed");
-        }
-
-        const responseData = await response.json();
-        console.log("Response Data:", responseData);
-
-        console.clear();
-
-        if (!responseData.username || !responseData.access_token) {
-          throw new Error("Invalid server response format");
-        }
-
         // Update the Vuex store with user information and authentication token
         await this.$store.dispatch("setToken", responseData.access_token);
         await this.$store.dispatch("setUser", {
           username: responseData.username,
-          access_token: responseData.access_token,
+          token: responseData.access_token,
         });
-
         // Log success message
         console.log(
           "Login Successful - Username:",
           this.$store.state.user.username
         );
-
         // Redirect to the desired page
         this.$router.push("/");
       } catch (error) {
         console.log("Login error:", error);
+        alert("Login failed (mock)");
       }
     },
   },

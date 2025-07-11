@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mockRegister } from "@/mocks/mockApi";
 export default {
   data() {
     return {
@@ -56,7 +56,7 @@ export default {
     };
   },
   methods: {
-    registerUser() {
+    async registerUser() {
       const userData = {
         username: this.username,
         email: this.email,
@@ -67,15 +67,19 @@ export default {
         gender: this.gender,
         profile_image_url: this.profile_image_url,
       };
-
-      axios
-        .post("http://127.0.0.1:5000/register", userData)
-        .then((response) => {
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
+      try {
+        const response = await mockRegister(userData);
+        await this.$store.dispatch("setToken", response.access_token);
+        await this.$store.dispatch("setUser", {
+          username: response.username,
+          token: response.access_token,
         });
+        alert("Registration successful (mock)");
+        this.$router.push("/");
+      } catch (error) {
+        console.log(error);
+        alert("Registration failed (mock)");
+      }
     },
   },
 };
