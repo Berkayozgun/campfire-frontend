@@ -27,26 +27,27 @@ export default {
   max-width: 800px;
   margin: 80px auto;
   padding: 40px;
-  background-color: #1a1a1a; /* Dark background for X aesthetic */
+  background-color: var(--card-bg-color); /* Use CSS variable */
   border-radius: 16px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 25px var(--shadow-color); /* Use CSS variable */
   text-align: center;
   font-family: 'Inter', sans-serif;
-  color: #e0e0e0; /* Light text color */
+  color: var(--text-color); /* Use CSS variable */
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s; /* Add transition */
 }
 
 .about-title {
   font-size: 2.5rem;
   font-weight: 800;
   margin-bottom: 30px;
-  color: #ffffff;
+  color: var(--text-color); /* Use CSS variable */
 }
 
 .about-text {
   font-size: 1.1rem;
   line-height: 1.6;
   margin-bottom: 20px;
-  color: #8899a6;
+  color: var(--secondary-text-color); /* Use CSS variable */
 }
 
 @media (max-width: 768px) {
