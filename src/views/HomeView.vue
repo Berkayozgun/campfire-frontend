@@ -1,10 +1,7 @@
 <template>
   <div class="home-view">
     <div class="home-header">
-      <div class="welcome-area">
-        <h1 class="main-title">Campfire</h1>
-        <p class="subtitle">Welcome{{ username ? ', ' + username : '' }}! Discover the latest posts below.</p>
-      </div>
+      <!-- Removed welcome-area for a more professional look -->
       <button v-if="isLoggedIn" class="new-post-btn" @click="$router.push('/newpost')">
         + New Post
       </button>
@@ -66,29 +63,14 @@ export default {
 .home-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end; /* Align button to the right */
   max-width: 700px; /* Adjusted max-width for single column layout */
   margin: 0 auto 24px auto; /* Adjusted margin */
   padding: 40px 32px 16px 32px; /* Adjusted padding */
   gap: 24px;
 }
-.welcome-area {
-  display: flex;
-  flex-direction: column;
-  gap: 8px; /* Increased gap */
-}
-.main-title {
-  font-size: 2.8rem; /* Larger title */
-  font-weight: 900;
-  color: var(--primary-blue); /* Use CSS variable */
-  margin-bottom: 4px;
-  letter-spacing: -1.5px;
-}
-.subtitle {
-  font-size: 1.2rem; /* Slightly larger subtitle */
-  color: var(--secondary-text-color); /* Use CSS variable */
-  margin-bottom: 0;
-}
+/* Removed .welcome-area, .main-title, .subtitle styles */
+
 .new-post-btn {
   background: linear-gradient(90deg, var(--primary-blue) 60%, var(--primary-blue-dark) 100%); /* Use CSS variable */
   color: #fff;
@@ -122,9 +104,6 @@ export default {
     max-width: 98vw;
     padding: 0 16px;
   }
-  .main-title {
-    font-size: 2rem;
-  }
   .new-post-btn {
     padding: 12px 24px;
     font-size: 1.05rem;
@@ -137,8 +116,8 @@ export default {
     gap: 12px;
     padding: 24px 16px 8px 16px;
   }
-  .main-title {
-    font-size: 1.5rem;
+  .new-post-btn {
+    /* Adjust button position for mobile if needed */
   }
   .post-list {
     padding: 0 16px;
