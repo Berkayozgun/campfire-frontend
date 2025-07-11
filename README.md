@@ -101,8 +101,8 @@ This will typically open the application at `http://localhost:8080` (or another 
 
 ## Future Enhancements (Potential)
 
--   Integration with a real backend API.
 -   Advanced search and filtering for posts.
--   User profile pages.
--   Real-time updates for posts and comments.
 -   More comprehensive testing.
+-   Improved error handling and user feedback.
+-   Pagination or infinite scrolling for posts.
+-   User profile editing within the frontend.
