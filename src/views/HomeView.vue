@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mockGetPosts } from "@/mocks/mockApi";
+import apiService from "@/services/api";
 import PostCard from "@/components/PostCard.vue";
 
 export default {
@@ -31,18 +31,15 @@ export default {
       return this.$store.state.user;
     },
     isLoggedIn() {
-      return !!this.user && !!this.user.username;
-    },
-    username() {
-      return this.user ? this.user.username : '';
+      return !!this.user && !!this.user.token;
     },
   },
   async mounted() {
     try {
-      const response = await mockGetPosts();
-      this.posts = response.posts;
+      const response = await apiService.get('/posts/all');
+      this.posts = response.data.posts || response.data; // Handle different response structures
     } catch (error) {
-      console.error(error);
+      console.error("Error fetching posts:", error);
     }
   },
 };

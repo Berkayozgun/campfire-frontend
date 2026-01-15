@@ -101,7 +101,6 @@
 </template>
 
 <script>
-import { mockRegister } from "@/mocks/mockApi";
 export default {
   data() {
     return {
@@ -128,17 +127,15 @@ export default {
         profile_image_url: this.profile_image_url,
       };
       try {
-        const response = await mockRegister(userData);
-        await this.$store.dispatch("setToken", response.access_token);
-        await this.$store.dispatch("setUser", {
-          username: response.username,
-          token: response.access_token,
-        });
-        alert("Registration successful (mock)");
+        await this.$store.dispatch("register", userData);
+        alert("Registration successful!");
         this.$router.push("/");
       } catch (error) {
-        console.log(error);
-        alert("Registration failed (mock)");
+        console.error("Register component error:", error);
+        const errorMsg = error.response && error.response.data && error.response.data.message 
+          ? error.response.data.message 
+          : "Registration failed. Please try again.";
+        alert(errorMsg);
       }
     },
   },

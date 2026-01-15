@@ -42,7 +42,6 @@
 </template>
 
 <script>
-import { mockLogin } from "@/mocks/mockApi";
 export default {
   data() {
     return {
@@ -53,26 +52,19 @@ export default {
   methods: {
     async login() {
       try {
-        const responseData = await mockLogin({
+        await this.$store.dispatch("login", {
           username: this.username,
           password: this.password,
         });
-        // Update the Vuex store with user information and authentication token
-        await this.$store.dispatch("setToken", responseData.access_token);
-        await this.$store.dispatch("setUser", {
-          username: responseData.username,
-          token: responseData.access_token,
-        });
-        // Log success message
-        console.log(
-          "Login Successful - Username:",
-          this.$store.state.user.username
-        );
-        // Redirect to the desired page
+        
+        console.log("Login Successful");
         this.$router.push("/");
       } catch (error) {
-        console.log("Login error:", error);
-        alert("Login failed (mock)");
+        console.error("Login component error:", error);
+        const errorMsg = error.response && error.response.data && error.response.data.message 
+          ? error.response.data.message 
+          : "Login failed. Please check your credentials.";
+        alert(errorMsg);
       }
     },
   },
